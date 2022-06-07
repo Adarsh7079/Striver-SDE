@@ -10,3 +10,5 @@ vector<vector<long long int>> printPascal(int n)
             v[i][j]=v[i-1][j-1]+v[i-1][j];
         }
     }
+    return v:
+    }
