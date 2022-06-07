@@ -1,0 +1,43 @@
+//input:
+//1 2 0
+//1 2 4
+//0 3 4
+//output:
+//0 0 0
+//0 2 0
+//0 0 0
+void setZeroes(vector<vector<int>>& matrix) {
+           int flage=1;
+           int r=matrix.size();
+            int c=matrix[0].size();
+            for(int i=0;i<r;i++)
+            {
+                    if(matrix[i][0]==0)
+                    {
+                            flage=0;
+                    }
+                    for(int j=1;j<c;j++)
+                    {
+                            if(matrix[i][j]==0)
+                            {
+                                    matrix[i][0]=0;// column flage 0
+                                    matrix[0][j]=0;// row flage
+                            }
+                    }
+            }
+            for(int i=r-1;i>=0;i--)
+            {
+                    for(int j=c-1;j>=1;j--)
+                    {
+                            if(matrix[i][0]==0||matrix[0][j]==0)
+                            {
+                                    matrix[i][j]=0;
+                            }
+                    }
+                    if(flage==0)
+                    {
+                            matrix[i][0]=0;
+                    }
+            }
+    }
+};
