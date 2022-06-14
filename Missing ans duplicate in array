@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+	pair<int,int>p;
+    int s=0;
+    while(s<n)
+    {
+        if(arr[s]!=arr[arr[s]-1])
+        {
+            swap(arr[s],arr[arr[s]-1]);
+        }
+        else
+        {
+            s++;
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]!=i+1)
+        {
+         p.first=i+1;
+         p.second=arr[i];
+        }
+    }
+	return p;
+}
