@@ -1,0 +1,20 @@
+void solve(vector<int>v,vector<vector<int>>&ans,int i,vector<int>temp)
+{
+    if(i==v.size())
+    {
+        ans.push_back(temp);
+        return;
+    }
+      solve(v,ans,i+1,temp);
+    //endclude
+    
+    temp.push_back(v[i]);
+   solve(v,ans,i+1,temp);
+}
+vector<vector<int>> pwset(vector<int>v)
+{
+    vector<int>op;
+    vector<vector<int>>ans;
+     solve(v,ans,0,op);
+    return ans;
+}
