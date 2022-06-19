@@ -1,0 +1,40 @@
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+   Node<int> *ans = new Node<int>(-1); 
+   Node<int> *ansHead = ans;   
+   while(first!=NULL && second!=NULL)
+   { 
+       if(first->data >= second->data)
+       {
+           ans->next = second; 
+           ans = ans->next;
+           second = second->next;
+       }
+       else
+       {  
+           ans->next = first;  
+           ans = ans->next;  
+           first = first->next;
+       }
+   }
+   
+   if(first!=NULL)
+   {    
+       while(first!=NULL)
+       {
+           ans->next = first;
+           ans = ans->next;
+           first = first->next;
+       }
+   }
+   if(second!=NULL)
+   {    
+       while(second!=NULL)
+       {
+           ans->next = second;
+           ans = ans->next;
+           second = second->next;
+       }
+   }
+   return ansHead->next; 
+}
