@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+
+Sample Input 2 :
+
+2
+5 2 10 
+2 5 4
+
+
+Sample Output 2 :
+
+5
+0
+
+
+int modularExponentiation(int x, int n, int m) {
+
+    if(n==0){
+        return 1;
+    }
+    long ans=modularExponentiation(x,n/2,m);
+    if(n%2==0){
+        return ((ans*ans)%m);
+    }else{
+        return (((ans*ans)%m)*x%m)%m;
+    }
