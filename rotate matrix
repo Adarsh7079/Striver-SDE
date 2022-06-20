@@ -1,4 +1,13 @@
+Input Matrix: [ [ 1, 2, 3 ] 
+                [ 4, 5, 6 ] 
+                [ 7, 8, 9 ] ]
 
+Output Matrix: [ [ 4, 1, 2 ] 
+                 [ 7, 5, 3 ] 
+                 [ 8, 9, 6 ] ]
+ void rotateMatrix(vector<vector<int>> &mat, int rows, int columns)
+{
+  
     int rowDiv = rows/2;
     int colDiv = columns/2;
     int topLeft;
@@ -20,3 +29,4 @@
         
         mat[x][y+1]= topLeft;
     }
+
