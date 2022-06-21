@@ -1,0 +1,23 @@
+/* Input 1:
+
+2
+3
+1 1 2
+5
+1 2 3 4 5
+
+Sample Output 1:
+
+2
+5  */
+
+int removeDuplicates(vector<int> &arr, int n) {
+ int i=0;
+    for(int j=1;j<n;j++){
+        if(arr[j]!=arr[i]){
+            i++;
+            arr[i]=arr[j];
+        }
+    }
+    return i+1;
+}
