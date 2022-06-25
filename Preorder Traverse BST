@@ -1,0 +1,20 @@
+void solve(TreeNode* root,vector<int>&v)
+{
+   
+    
+    if(root==NULL)
+    {
+        return ;
+    }
+     v.push_back(root->data);
+     solve(root->left,v);
+     solve(root->right,v);
+    
+}
+vector<int> getPreOrderTraversal(TreeNode *root)
+{
+   vector<int>v;
+     solve(root,v);
+    return v;
+    
+}
