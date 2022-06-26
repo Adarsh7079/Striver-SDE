@@ -1,0 +1,29 @@
+/*Sample Input 1:
+
+2
+5
+2 3 9 2 2
+4
+8 5 1 9 
+
+Sample Output 1:
+
+2
+-1
+*/
+int findMajorityElement(int arr[], int n) {
+	map<int,int>m;
+    for(int i=0;i<n;i++)
+    {
+        m[arr[i]]++;
+    }
+    
+    for(auto i:m)
+    {
+        if(i.second>n/2)
+        {
+            return i.first;
+          }
+    }
+    return -1;
+}
