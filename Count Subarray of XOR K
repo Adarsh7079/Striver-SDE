@@ -1,0 +1,35 @@
+/*Sample Input 1 :
+
+2
+5 8
+5 3 8 3 10
+3 7
+5 2 9
+
+Sample Output 1 :
+
+2
+1*/
+
+
+int subarraysXor(vector<int> &arr, int x)
+{
+   int cnt=0;
+    map<int,int>m;
+    int sum=0;
+    for(int i=0;i<arr.size();i++)
+    {
+            sum=sum^arr[i];
+            if(sum==x)
+            {
+                cnt++;
+            }
+        if(m.find(sum^x)!=m.end())
+        {
+            cnt+=m[sum^x];
+        }
+        m[sum]++;
+    
+    }
+    return cnt;
+}
