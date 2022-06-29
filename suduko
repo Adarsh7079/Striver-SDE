@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool ispossible(int row,int col,int matrix[9][9],int val)
+{
+    for(int i=0;i<9;i++)
+    {
+        if(matrix[row][i]==val)
+        {
+            return false;
+        }
+        if(matrix[i][col]==val)
+        {
+            return false;
+        }
+        if(matrix[3*(row/3)+i/3][3*(col/3)+i%3]==val)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+bool isItSudoku(int matrix[9][9]) {
+    int n=9;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(matrix[i][j]==0)
+            {
+                for(int val=1;val<=9;val++)
+                {
+                    if(ispossible(i,j,matrix,val))
+                    {
+                        matrix[i][j]=val;
+                        bool nextsearch=isItSudoku(matrix);
+                        if(nextsearch)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            matrix[i][j]=0;
+                        }
+                    } 
+                 
+                }  
+                return false;
+               
+            }
+        }
+        
+    }return true;
+}
+
+int main()
+{
+    int m[9][9]={
+ {9, 0 ,0 ,0 ,2 ,0 ,7 ,5 ,0} ,
+{6 ,0 ,0 ,0 ,5, 0 ,0 ,4 ,0} ,
+{0 ,2 ,0, 4 ,0 ,0 ,0 ,1 ,0} ,
+{2 ,0 ,8 ,0, 0 ,0 ,0 ,0 ,0 },
+{0 ,7 ,0 ,5 ,0 ,9 ,0, 6 ,0 },
+{0 ,0, 0 ,0 ,0 ,0, 4 ,0 ,1} ,
+{0 ,1 ,0 ,0 ,0 ,5 ,0 ,8 ,0 },
+{0,9 ,0,0 ,7 ,0 ,0 ,0 ,4} ,
+{0 ,8 ,2 ,0 ,4,0,0,0,6}
+    };
+  cout<<isItSudoku( m)<<endl;
+    return 0;
+}
