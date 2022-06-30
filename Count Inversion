@@ -1,0 +1,99 @@
+/*Sample Input 1 :
+
+3
+3 2 1
+
+Sample Output 1 :
+
+3
+Sample Input 2 :
+
+5
+2 5 1 3 4
+
+Sample Output 2 :
+
+4
+*/
+void merge(long long arr[], long long s, long long e,long long &res)
+{
+    int mid = s + (e - s) / 2;
+
+    int len1 = mid - s + 1;
+    int len2 = e - mid;
+
+    int *first = new int[len1];
+    int *second = new int[len2];
+
+    int mainIndex = s;
+
+    // Copying left elements in an array
+    for (int i = 0; i < len1; i++)
+    {
+        first[i] = arr[mainIndex++];
+    }
+
+    mainIndex = mid + 1;
+    // Copying Right elements in an array
+    for (int j = 0; j < len2; j++)
+    {
+        second[j] = arr[mainIndex++];
+    }
+
+    // Merge 2 arrays
+    int index1 = 0;
+    int index2 = 0;
+    mainIndex = s;
+
+    while (index1 < len1 && index2 < len2)
+    {
+        if (first[index1] <= second[index2])
+        {
+            arr[mainIndex++] = first[index1++];
+        }
+        else
+        {
+            arr[mainIndex++] = second[index2++];
+            res += (len1 - index1);
+        }
+    }
+
+    while (index1 < len1)
+    {
+        arr[mainIndex++] = first[index1++];
+    }
+
+    while (index2 < len2)
+    {
+        arr[mainIndex++] = second[index2++];
+    }
+
+//     delete []first;
+//     delete []second;
+}
+
+void mergeSort(long long arr[], long long s, long long e,long long &res)
+{
+    // Base Condition 
+    if(s >=e)
+    {
+        return;
+    }
+
+    int mid = s + (e - s) / 2;
+
+    // sorting Left Part
+    mergeSort(arr, s, mid,res);
+
+    // Sorting Right Part
+    mergeSort(arr, mid + 1, e,res);
+
+    // Merge arrays
+    merge(arr, s, e,res);
+}
+long long getInversions(long long *arr, int n){
+    long long int res = 0;
+      mergeSort(arr,0,n-1,res);
+    return res;
+   
+}
