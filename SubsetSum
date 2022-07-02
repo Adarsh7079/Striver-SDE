@@ -1,0 +1,33 @@
+
+Sample Input 1 :
+
+2
+2
+1 2
+1
+0
+
+Sample output 1 :
+
+0 1 2 3
+0 0
+
+void func(int index,int sum,vector<int>arr,vector<int> &sumOfSubsets){
+    
+    if(index==arr.size()){
+        sumOfSubsets.push_back(sum);
+        return;
+    }
+    //option 1 : picking the element
+    func(index+1,sum+arr[index],arr,sumOfSubsets);
+    
+    //option 2 : not picking the element
+    func(index+1,sum,arr,sumOfSubsets);
+}
+vector<int> subsetSum(vector<int> &num)
+{
+   vector<int>sumOfSubsets;
+    func(0,0,num,sumOfSubsets);
+    sort(sumOfSubsets.begin(),sumOfSubsets.end());
+    return sumOfSubsets;
+}
