@@ -1,0 +1,63 @@
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+Node* iscycle(Node* head)
+{
+    Node* slow=head;
+    Node* fast=head;
+    if(head==NULL)
+    {
+        return NULL;
+
+    }
+    while(fast->next!=NULL&& fast->next->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast)
+        {
+            return slow;
+        }
+      
+    }
+    return NULL;
+}
+Node *removeLoop(Node *head)
+{
+    
+    if(!iscycle(head))
+    {
+       return head;
+    }
+      Node* fast=iscycle(head);
+    Node* slow=head;
+    if(head==NULL)
+    {
+        return head;
+    }
+    while(slow!=fast)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+    Node* presentloop=slow;
+    Node* temp=slow;
+    while(temp->next!=slow)
+    {
+        temp=temp->next;
+    }
+    temp->next=NULL;
+    return head;
+}
