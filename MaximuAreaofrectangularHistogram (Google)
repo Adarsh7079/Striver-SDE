@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+vector<int>nsr(vector<int>arr, int n){  
+        vector<int>nsr; 
+        stack<int>st;
+    for(int i=n-1;i>=0;i--)
+    {
+        while(st.size()>0 && arr[st.top()]>=arr[i]){
+            st.pop();
+        }
+        if(st.size()==0){
+            nsr.push_back(n);
+        }
+        else
+        {
+            nsr.push_back(st.top());
+        }
+        st.push(i);
+    }
+    reverse(nsr.begin(), nsr.end());
+     return nsr;
+}
+vector<int>nsl (vector<int>arr, int n)
+{
+      vector<int>nsl;
+        stack<int>st;
+     for(int i=0;i<n;i++)
+     {
+        while(st.size()>0 && arr[st.top()]>=arr[i]){
+            st.pop();
+        }
+        if(st.size()==0){
+            nsl.push_back(-1);
+        }
+        else{
+            nsl.push_back(st.top());
+        }
+        st.push(i);
+     }
+         return nsl;
+    
+} 
+int largestRectangle(vector<int> &v)
+{
+    
+     int n=v.size();
+            int size=v.size();
+         vector<int>nlv=nsl(v,size);
+          vector<int>nrv=nsr(v,size);
+    
+            int ans=INT_MIN;
+
+            for(int i=0;i<n;i++){
+               int l=v[i];
+                    int b=nrv[i]-nlv[i]-1;
+                    int ans1=b*l;
+                    ans=max(ans,ans1);
+            }
+            return ans;
+ }
