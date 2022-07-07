@@ -1,0 +1,23 @@
+void  sortindex(stack<int>&s,int topel)
+{
+    if(s.empty()||s.top()<topel)
+    {
+        s.push(topel);
+        return;
+    }
+    int el=s.top();
+    s.pop();
+    sortindex(s,topel);
+    s.push(el);
+}
+void sortStack(stack<int>&s)
+{
+	 if(s.empty())
+    {
+        return;
+    }
+    int topel=s.top();
+    s.pop();
+    sortStack(s);
+     sortindex(s,topel);
+}
