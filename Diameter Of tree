@@ -1,0 +1,19 @@
+int height(TreeNode<int>* root)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    return (1+max(height(root->left),height(root->right)));
+}
+int diameterOfBinaryTree(TreeNode<int> *root)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    int op1=diameterOfBinaryTree(root->left);
+    int op2=diameterOfBinaryTree(root->right);
+    int op3=(height(root->left)+height(root->right));
+    return max(op1,max(op2,op3));
+}
