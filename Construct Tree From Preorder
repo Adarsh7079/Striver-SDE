@@ -1,0 +1,17 @@
+TreeNode<int>* bst(vector<int> &pre,int &index,int max)
+{
+    if(index==pre.size()||pre[index]>max)
+    {
+        return NULL;
+    }
+    TreeNode<int>* root=new TreeNode<int>(pre[index]);
+    index++;
+    root->left=bst(pre,index,root->data);
+    root->right=bst(pre,index,max);
+    return root;
+}
+TreeNode<int>* preOrderTree(vector<int> &preOrder){
+    int index=0;
+    TreeNode<int>* root=bst(preOrder,index,INT_MAX);
+    return root;
+}
