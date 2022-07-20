@@ -1,0 +1,14 @@
+void find(int level,TreeNode<int>*root, vector<int>&ans){
+    if(!root) return;
+    if(level==ans.size()){
+        ans.push_back(root->data);
+    }
+    find(level+1,root->left,ans);
+    find(level+1,root->right,ans);
+}
+vector<int> getLeftView(TreeNode<int> *root)
+{
+    vector<int>ans;
+    find(0,root,ans);
+    return ans;
+}
