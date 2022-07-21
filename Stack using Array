@@ -1,0 +1,59 @@
+// Stack class.
+class Stack {
+    
+public:
+    int *arr;
+    int size;
+    int topp;
+    
+    Stack(int capacity) {
+       size=capacity;
+        topp=-1;
+        arr=new int[size];
+    }
+
+    void push(int num) {
+      
+        if(topp>=size)
+        {
+            return;
+        }
+         topp++;
+        arr[topp]=num;
+    }
+
+    int pop() {
+       if(topp==-1)
+       {
+          return -1; 
+       }
+       return arr[topp--];
+    }
+    
+    int top() {
+      if(topp!=-1 && topp<size)
+           return arr[topp];
+       else
+           return -1;
+    }
+    
+    int isEmpty() {
+        if(topp==-1)
+        {
+            return 1;
+        }else
+        {
+            return 0;
+        }
+    }
+    
+    int isFull() {
+       if(topp>=size)
+       {
+           return 1;
+       }
+       
+            return 0;
+    }
+    
+};
