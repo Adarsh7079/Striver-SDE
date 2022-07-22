@@ -1,0 +1,29 @@
+void solve(int index,vector<int>&v,int t,vector<vector<int>>&ans,vector<int>&temp)
+{
+     if(t==0)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        
+        for(int i=index;i<v.size();i++)
+        {
+            if(i>index && v[i]=v[i-1])
+                continue;
+            
+            if(v[i]<=t)
+            {
+                temp.push_back(v[i]);
+                solve(i+1,v,t-v[i],ans,temp);
+                temp.pop_back();
+            }
+        }
+}
+vector<vector<int>> combinationSum2(vector<int> &arr, int n, int target)
+{
+    sort(arr.begin(),arr.end());
+	vector<vector<int>>ans;
+    vector<int>temp;
+    solve(0,arr,target,ans,temp);
+    return ans;
+}
