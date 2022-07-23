@@ -1,0 +1,52 @@
+vector<int> maximumMeetings(vector<int> &start, vector<int> &end) {
+//     map<int,int>m1;
+//     map<int,int>m2;
+//     for(int i=0;i<s.size();i++)
+//     {
+//        m1.insert({i,s[i]});
+//     }
+//    for(int i=0;i<e.size();i++)
+//    {
+//      m2.insert({i,e[i]});
+//    }
+//    int  i=0;
+//    int j=0;
+//    int op=-1;
+//    vector<int>ans;
+//    int cnt=1;
+//    while(i<=s.size() && j<=e.size())
+//    {
+//     if(m1[i]>op)
+//     {
+//         ans.push_back(cnt);
+//           op=m2[j];
+//     }
+//        else if( op==m2[i] && m2[i]<ans.back())
+//        {
+//            ans.back()=m2[i];
+//             op=m2[j];
+         
+//        }
+//     cnt++;
+//     i++;
+//     j++;
+//    }
+//     return ans;
+     int sz = start.size();
+    vector<int> answer;
+    map<pair<int,int>, int> val;
+    for(int i = 0; i < sz; i++) {
+        val.insert({{end[i], start[i]}, i+1});
+    }
+    int x = -1;
+    for(auto &p : val) {
+        if(x < p.first.second) {
+            answer.push_back(p.second);
+            x = p.first.first;
+        }
+        else if (x == p.first.first && p.second < answer.back()) {
+            answer.back() = p.second;
+        }
+    }
+    return answer;
+}
