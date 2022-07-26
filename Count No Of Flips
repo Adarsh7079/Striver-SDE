@@ -1,0 +1,23 @@
+
+/*Sample Input 1:
+
+2
+13 7
+15 20
+
+Sample Output 1:
+
+2
+4
+*/
+int numberOfFlips(int a, int b)
+{
+   int n=a^b;
+    int flip=0;
+    while(n)
+    {
+        flip+=n&1;
+        n=n>>1;
+    }
+    return flip;
+}
