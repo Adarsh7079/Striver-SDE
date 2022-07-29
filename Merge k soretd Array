@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+class Triplet{
+public:
+    int data;
+    int row;
+    int col;
+    Triplet(int d,int r,int c)
+    {
+        this->data=d;
+        this->row=r;
+        this->col=c;
+    }
+};
+struct comp{
+    bool operator()(Triplet&t1,Triplet &t2){
+        return t1.data>t2.data;
+    }
+};
+vector<int> mergeKSortedArrays(vector<vector<int>>&kArrays, int k)
+{
+    int n=kArrays.size();
+    priority_queue<Triplet,vector<Triplet>,comp> pq;
+    vector<int>ans;
+    for(int i=0;i<k;i++)
+    {
+        Triplet t(kArrays[i][0],i,0);
+        pq.push(t);
+    }
+    while(!pq.empty())
+    {
+        Triplet t=pq.top();
+        pq.pop();
+        ans.push_back(t.data);
+        int r=t.row,c=t.col;
+        if(c+1<kArrays[r].size())
+        {
+            Triplet t1(kArrays[r][c+1],r,c+1);
+            pq.push(t1);
+        }
+    }
+    return ans;
+}
